@@ -1,2 +1,2 @@
-require 'lib/flow_grid'
+require 'flow_grid'
 ActionView::Base.send :include, FlowGridHelper
