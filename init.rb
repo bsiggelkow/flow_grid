@@ -1,1 +1,2 @@
-# Include hook code here
+require 'lib/flow_grid'
+ActionView::Base.send :include, FlowGridHelper
