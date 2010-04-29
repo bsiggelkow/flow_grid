@@ -6,7 +6,7 @@ module FlowGridHelper
   # You can specify the number of columns that the table will have, and if the columns
   # should be laid down horizontally across or vertically down. A &nbsp; will be inserted
   # into any extra cells.
-  def flow_grid(collection, partial, columns=1, orientation=:horizontal, options={})
+  def flow_grid(collection, partial, columns=1, orientation=:horizontal, options={}, &block)
     table_options = {:class => :flow_grid}.update(options.stringify_keys)
     rows = (collection.length.to_f / columns.to_f).ceil
     i = 0 # item counter
@@ -19,9 +19,12 @@ module FlowGridHelper
       columns.times do
         result += "<td>"
         if collection[i]
-          result += render(:partial => partial, :object => collection[i])
+          item = block_given? ? yield( collection[i] ) : collection[i]
+          result += partial ? 
+            render(:partial => partial, :object => item) :
+            item
         else
-          result += "&nbsp"
+          result += "&nbsp;"
         end       
         i = (orientation == :horizontal ? i + 1 : i + rows)
         result += "</td>"

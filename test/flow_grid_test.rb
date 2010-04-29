@@ -31,4 +31,12 @@ class FlowGridTest <  ActiveSupport::TestCase
     @helper.flow_grid(@collection, 'item')
   end
   
+  test 'should call the block' do
+    html = %Q{
+      <table class="flow_grid"><tr><td>oof</td></tr><tr><td>rab</td></tr><tr><td>zab</td></tr></table>
+    }
+    res = @helper.flow_grid(@collection, nil) {|t| t.reverse}
+    assert_equal html.strip, res
+  end
+  
 end
