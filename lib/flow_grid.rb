@@ -1,3 +1,4 @@
+require 'active_support/core_ext'
 # FlowGrid
 module FlowGridHelper
   # Renders an HTML table by looping over the items and creating a table cell for each item.
