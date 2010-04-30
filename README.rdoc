@@ -1,5 +1,4 @@
-FlowGrid
-========
+= FlowGrid
 
 == Description
 
@@ -7,12 +6,10 @@ Flow grid is a simple Rails plugin for creating grid-like views of collections.
 The data can flow from left-to-right (row) or top-to-bottom (column). The column orientation
 often has better usability than row orientation.
 
-Install
-=======
+== Install
 ./script/plugin install git://github.com/bsiggelkow/flow_grid.git
 
-Example
-=======
+== Examples
 
 Basic usage:
 
