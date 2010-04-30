@@ -1,12 +1,33 @@
 FlowGrid
 ========
 
-Flow grid is a simple Rails plugin for creating lists in a horizontal or vertical orientation.
+== Description
+
+Flow grid is a simple Rails plugin for creating grid-like views of collections.
+The data can flow from left-to-right (row) or top-to-bottom (column). The column orientation
+often has better usability than row orientation.
+
+Install
+=======
+./script/plugin install git://github.com/bsiggelkow/flow_grid.git
 
 Example
 =======
 
-Example goes here.
+Basic usage:
 
+  <%= flow_grid collection,   # collection (must respond to [])
+                'my_partial', # partial that renders the collection item
+                3,            # number of columns
+                :vertial,     # orientation (horizontal | vertical)
+                  {           # optional table html attributes 
+                    :class => 'my_table', 
+                    :id    => 'my_table'
+                  }
+  %>
+
+== Questions and/or Comments
+
+http://github.com/bsiggelkow/flow_grid
 
 Copyright (c) 2010 Bill Siggelkow, released under the MIT license
