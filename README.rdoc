@@ -14,14 +14,27 @@ often has better usability than row orientation.
 Basic usage:
 
   <%= flow_grid collection,   # collection (must respond to [])
-                'my_partial', # partial that renders the collection item
-                3,            # number of columns
-                :vertial,     # orientation (horizontal | vertical)
-                  {           # optional table html attributes 
-                    :class => 'my_table', 
-                    :id    => 'my_table'
-                  }
+                  :partial => 'my_partial', # partial that renders the collection item
+                  :columns => 3,            # number of columns
+                  :flow    => :vertial,     # orientation (horizontal | vertical)
+                  :fill    => '&nbsp;',     # fill empty cells with this value
+                  :class   => 'flow_grid'   # this and all succeeding options passed as html attributes to table tag
   %>
+
+
+Without a partial:
+
+  <%= flow_grid collection, :columns => 3 %>
+  
+With a block (with each result of the block passed to the partial):
+
+  <%= flow_grid( collection, :partial => '_some_partial', :columns => 4 ) { |obj| obj.to_s.capitalize } %>
+
+FlowGrid works its magic the good old-fashioned way -- TABLES! Seriously,
+some HTML is just a bit easier to render tables and this is one of them. I have
+considered creating a "table-less" option (using a combination styled divs 
+and unordered lists); but generally I find the solution more cumbersome than 
+the table-based alternative.
 
 == Questions and/or Comments
 
