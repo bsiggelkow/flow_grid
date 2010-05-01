@@ -19,7 +19,7 @@ module FlowGridHelper
     partial     = options.delete(:partial)
     columns     = options.delete(:columns) || 1
     flow        = options.delete(:flow) || :horizontal
-    fill        = options.delete(:fill) || '&nbsp;'
+    fill        = options.delete(:fill) || '&nbsp;'.html_safe
     
     table_options = {:class => :flow_grid}.update(options.stringify_keys)
     rows = (collection.length.to_f / columns.to_f).ceil
@@ -29,23 +29,24 @@ module FlowGridHelper
     rows.times do
       j = j + 1
       i = j if flow == :vertical
-      result += "<tr>"
+      result.safe_concat "<tr>"
       columns.times do
-        result += "<td>"
+        result.safe_concat "<td>"
         if collection[i]
           item = block_given? ? yield( collection[i] ) : collection[i]
           result += partial ? 
             render(:partial => partial, :object => item) :
             item.to_s
         else
-          result += fill
+          result += fill.html_safe
         end       
         i = (flow == :horizontal ? i + 1 : i + rows)
-        result += "</td>"
+        result.safe_concat "</td>"
       end
       
-      result += "</tr>"
+      result.safe_concat "</tr>"
     end
-    result += "</table>"
+    result.safe_concat "</table>"
+    result
   end
 end
