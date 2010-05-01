@@ -7,7 +7,14 @@ The data can flow from left-to-right (row) or top-to-bottom (column). The column
 often has better usability than row orientation.
 
 == Install
+=== master (~ rails-2.3)
 ./script/plugin install git://github.com/bsiggelkow/flow_grid.git
+
+=== Rails 2.3
+./script/plugin install git://github.com/bsiggelkow/flow_grid.git -r rails-2.3
+
+=== Rails 3.0
+./script/plugin install git://github.com/bsiggelkow/flow_grid.git -r rails-3.0
 
 == Examples
 
