@@ -29,23 +29,23 @@ module FlowGridHelper
     rows.times do
       j = j + 1
       i = j if flow == :vertical
-      result += "<tr>"
+      result.concat "<tr>"
       columns.times do
-        result += "<td>"
+        result.concat "<td>"
         if collection[i]
           item = block_given? ? yield( collection[i] ) : collection[i]
-          result += partial ? 
+          result.concat partial ? 
             render(:partial => partial, :object => item) :
             item.to_s
         else
-          result += fill
+          result.concat fill
         end       
         i = (flow == :horizontal ? i + 1 : i + rows)
-        result += "</td>"
+        result.concat "</td>"
       end
       
-      result += "</tr>"
+      result.concat "</tr>"
     end
-    result += "</table>"
+    result.concat "</table>"
   end
 end
